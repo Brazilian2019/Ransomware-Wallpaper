@@ -2,7 +2,7 @@ import logging
 import shutil
 from pathlib import Path
 
-from monkeytypes import OperatingSystem
+from common import OperatingSystem
 
 logger = logging.getLogger(__name__)
 

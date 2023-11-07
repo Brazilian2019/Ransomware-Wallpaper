@@ -7,11 +7,11 @@ from common import OperatingSystem
 SPI_SETDESKWALLPAPER = 20
 logger = logging.getLogger(__name__)
 
-class ImageDropper:
+class WallpaperChanger:
     def __init__(self, operating_system: OperatingSystem):
         self._operating_system = operating_system
 
-    def leave_image(self, src: Path, dest: Path):
+    def change_wallpaper(self, src: Path, dest: Path):
         if dest.exists():
             logger.warning(f"{dest} already exists, not leaving a new image")
             return

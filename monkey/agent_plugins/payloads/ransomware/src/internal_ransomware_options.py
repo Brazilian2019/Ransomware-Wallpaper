@@ -2,8 +2,7 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from monkeytypes import OperatingSystem
-
+from common import OperatingSystem
 from common.utils.environment import get_os
 from common.utils.file_utils import InvalidPath, expand_path
 
@@ -16,7 +15,7 @@ class InternalRansomwareOptions:
     def __init__(self, options: RansomwareOptions):
         self.file_extension: Optional[str] = options.file_extension
         self.leave_readme: bool = options.leave_readme
-        self.change_wallpaper: bool = options.change_wallpaper
+        self.leave_image: bool = options.leave_image
         self.target_directory: Optional[Path] = InternalRansomwareOptions._choose_target_directory(
             options
         )

@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Callable, Literal, Union
 
-from monkeytypes import FileExtension
+from common.types import FileExtension
 
 
 class InPlaceFileEncryptor:

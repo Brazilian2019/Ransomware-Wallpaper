@@ -1,9 +1,8 @@
 import logging
 from pprint import pformat
 
-from monkeytypes import AgentID
-
 from common.event_queue import IAgentEventPublisher
+from common.types import AgentID
 from common.utils.environment import get_os
 
 from .bit_manipulators import flip_bits
@@ -13,6 +12,10 @@ from .internal_ransomware_options import InternalRansomwareOptions
 from .ransomware import Ransomware
 from .ransomware_options import RansomwareOptions
 from .readme_dropper import ReadmeDropper
+from .image_dropper import ImageDropper
+
+
+
 from .targeted_file_extensions import TARGETED_FILE_EXTENSIONS
 
 CHUNK_SIZE = 4096 * 24
@@ -31,12 +34,15 @@ def build_ransomware(
     file_encryptor = _build_file_encryptor(internal_ransomware_options.file_extension)
     file_selector = _build_file_selector(internal_ransomware_options.file_extension)
     leave_readme = _build_leave_readme()
+    leave_image = _build_leave_image()
+
 
     return Ransomware(
         internal_ransomware_options,
         file_encryptor,
         file_selector,
         leave_readme,
+        leave_image,
         agent_event_publisher,
         agent_id,
     )
@@ -58,3 +64,7 @@ def _build_file_selector(file_extension: str):
 
 def _build_leave_readme():
     return ReadmeDropper(get_os()).leave_readme
+   
+def _build_leave_image():
+    return ImageDropper(get_os()).leave_image
+
